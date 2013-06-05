@@ -1,0 +1,112 @@
+timestamp: 2013-05-22T02:28:23.815500
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2013-05-22T02:28:23.929776
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-05-22T02:28:24.047113
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-05-22T02:28:24.140181
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2013-05-22T02:28:24.249523
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-05-22T02:28:24.359456
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2013-05-22T02:28:24.453100
+CREATE TABLE page(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512),
+    body TEXT,
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-05-22T02:30:15.530033
+CREATE TABLE post(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    page_id INTEGER REFERENCES page(id) ON DELETE CASCADE,
+    body TEXT,
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-05-24T02:51:53.222932
+CREATE TABLE apply(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    page_id INTEGER REFERENCES page(id) ON DELETE CASCADE,
+    resume CHAR(512),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-05-24T03:00:46.007903
+ALTER TABLE apply ADD name TEXT;
+timestamp: 2013-06-05T12:38:18.242920
+ALTER TABLE page ADD type CHAR(512);
+timestamp: 2013-06-05T12:53:39.340755
+ALTER TABLE page ADD category CHAR(512);
+timestamp: 2013-06-05T12:59:03.440800
+ALTER TABLE page ADD location CHAR(512);
+timestamp: 2013-06-05T13:01:55.555013
+ALTER TABLE page ADD relocation CHAR(512);
+timestamp: 2013-06-05T13:03:10.574350
+ALTER TABLE page ADD description CHAR(512);
+timestamp: 2013-06-05T13:03:54.148987
+ALTER TABLE page ADD perks CHAR(512);
+timestamp: 2013-06-05T13:07:20.211760
+ALTER TABLE page ADD experience CHAR(512);
+timestamp: 2013-06-05T13:20:40.154375
+ALTER TABLE page ADD name CHAR(512);
+timestamp: 2013-06-05T13:22:14.267320
+ALTER TABLE page ADD logo CHAR(512);
+timestamp: 2013-06-05T13:22:53.308965
+ALTER TABLE page ADD url CHAR(512);
+timestamp: 2013-06-05T13:24:26.074916
+ALTER TABLE page ADD email CHAR(512);
+timestamp: 2013-06-05T18:43:45.320994
+ALTER TABLE page ADD contact_listing CHAR(512);
+timestamp: 2013-06-05T19:06:39.317720
+ALTER TABLE page ADD days CHAR(512);
+timestamp: 2013-06-05T23:24:46.139677
+ALTER TABLE page ADD how_apply TEXT;

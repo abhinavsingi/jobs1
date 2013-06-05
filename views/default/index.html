@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+<h3> Available jobs/internships</h3>
+[ {{=A('search', _href=URL('search'))}}  ]<br/>                 
+<ul>
+{{for page in pages:}}
+    {{=A(page.title, _href=URL('show', args=page.id))}}
+    Created by - {{=page.created_by}}
+    <br />
+{{pass}}
+</ul>
+
+<br />
+[  {{=A('create page', _href=URL('create'))}} ]

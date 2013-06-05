@@ -1,0 +1,76 @@
+{{extend 'layout.html'}}
+
+<h5> You have selected :</h5>
+<ul>{{for page in pages:}}
+    [   {{=A('edit', _href=URL('edit', args=request.args(0)))}}
+    |   {{=A('index', _href=URL('index'))}}] <br />
+
+    <h4>    {{=page.title}}    </h4>
+        <p> <h5>Description : </h5> 
+        This is {{=page.type}} type <br \>
+        This job was posted on {{=page.created_on}} by <br \>
+        {{=page.created_by}}
+        </p>
+        <br \>
+        
+<TABLE>
+   <TR>
+      <TD>This job is available for </TD>
+      <TD>: {{=page.days}}</TD>
+   </TR>
+   
+   <TR>
+      <TD>Type of job </TD>
+      <TD>: {{=page.type}} </TD>
+   </TR>
+   <TR>
+      <TD>Job category</TD>
+      <TD>: {{=page.category}} </TD>
+   </TR>
+   <TR>
+      <TD>Location of job</TD>
+      <TD>: {{=page.location}} </TD>
+   </TR>
+   <TR>
+      <TD>Job perks available</TD>
+      <TD>: {{=page.perks}} </TD>
+   </TR>
+   <TR>
+      <TD>Relocation Assistance available</TD>
+      <TD>: {{=page.relocation}} </TD>
+   </TR>
+   <TR>
+       <TD>Description of Job</TD>
+       <TD>: {{=page.description}} </TD>
+   </TR>
+   <TR>
+       <TD>How do people apply for this job? </TD>
+       <TD>: {{=page.how_apply}} </TD>
+   <TR>
+   <TR>
+       <TD>Work experience needed</TD>
+       <TD>: {{=page.experience}} </TD>
+   <TR>
+   <TR>
+       <TD>Name of the organization </TD>
+       <TD>: {{=page.name}} </TD>
+   <TR>
+   <TR>
+       <TD>URL </TD>
+       <TD>: {{=page.URL}} </TD>
+   <TR>
+   <TR>
+       <TD>Company Email for confirmation </TD>
+       <TD>: {{=page.email}} </TD>
+   <TR> 
+   <TR>
+       <TD>Is it okay for recruiters to contact you? </TD>
+       <TD>: {{=page.contact_listing}} </TD>
+   <TR>       
+</TABLE>
+</ul>        
+{{pass}}
+    
+    
+<h2> Apply Here </h2>
+{{=form}}

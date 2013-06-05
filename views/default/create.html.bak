@@ -1,0 +1,6 @@
+{{extend 'layout.html'}}
+<h1> Create a new Opening </h1>
+{{=form}}
+
+<h2>Submitted Fields:</h2>
+{{=BEAUTIFY(request.vars)}}
